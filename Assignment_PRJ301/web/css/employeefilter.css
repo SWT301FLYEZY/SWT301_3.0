@@ -7,37 +7,54 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     Author     : DAO TUAN ANH
 */
 
-/* General styles */
+ /* Tổng thể */
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 20px;
-    background-color: #f4f7fa;
+    background-color: #f7f8fa;
+    color: #333;
 }
 
-/* Container for side-by-side layout */
+/* Container tổng */
 .container {
+    max-width: 1200px;
+    margin: 0 auto;
     display: flex;
-    gap: 20px;
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* Form styles */
-form {
-    flex: 1; /* Đặt chiều rộng của form chiếm hết không gian còn lại trong container */
-    padding: 10px; /* Giảm padding để giảm chiều cao */
+/* Phần tìm kiếm */
+.search-section {
+    width: 100%;
+    max-width: 800px;
     background-color: #ffffff;
+    padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
 }
 
-/* Input and Select styles */
+.search-section h2 {
+    font-size: 1.5em;
+    color: #1565c0;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* Form tìm kiếm */
+form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
 form input[type="text"],
 form input[type="date"],
 form select {
-    width: calc(100% - 20px);
-    padding: 8px; /* Giảm padding để giảm chiều cao */
-    margin: 10px 0 15px;
+    flex: 1 1 45%;
+    padding: 10px;
     border-radius: 4px;
     border: 1px solid #ccc;
     background-color: #f9fafb;
@@ -48,12 +65,11 @@ form input[type="radio"] {
     margin-right: 5px;
 }
 
-form input[type="radio"] + label {
-    margin-right: 15px;
+form label {
     font-size: 14px;
+    margin-right: 10px;
 }
 
-/* Submit Button Style */
 form input[type="submit"] {
     width: 100%;
     padding: 10px;
@@ -71,11 +87,10 @@ form input[type="submit"]:hover {
     background-color: #0d47a1;
 }
 
-/* Table styles */
+/* Bảng kết quả */
 table {
     width: 100%;
-    max-width: 800px; /* Đảm bảo bảng không vượt quá chiều rộng này */
-    margin: 0;
+    max-width: 1200px;
     border-collapse: collapse;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
@@ -85,14 +100,14 @@ table, th, td {
 }
 
 th, td {
-    text-align: left;
     padding: 12px;
     font-size: 14px;
+    text-align: left;
 }
 
 th {
-    background-color: #f5f5f5;
-    color: #333;
+    background-color: #1565c0;
+    color: #ffffff;
     font-weight: bold;
 }
 
@@ -101,14 +116,24 @@ td {
     color: #333;
 }
 
-/* Responsive adjustments */
-@media (max-width: 800px) {
-    .container {
-        flex-direction: column;
-        align-items: center;
-    }
+/* Hàng xen kẽ màu và hiệu ứng hover */
+tr:nth-child(even) td {
+    background-color: #f0f3f7;
+}
 
-    form, table {
-        width: 100%; /* Đảm bảo cả form và bảng chiếm toàn bộ chiều rộng */
+tr:hover td {
+    background-color: #e3f2fd;
+}
+
+/* Responsive */
+@media (max-width: 800px) {
+    .search-section, table {
+        width: 100%;
+    }
+    
+    form input[type="text"],
+    form input[type="date"],
+    form select {
+        flex: 1 1 100%; /* Đặt mỗi trường input chiếm toàn bộ hàng */
     }
 }

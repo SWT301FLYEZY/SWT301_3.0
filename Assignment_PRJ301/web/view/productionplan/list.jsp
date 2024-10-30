@@ -5,7 +5,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Production Plan List</title>
-    
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/productionplanlist.css">
 </head>
 <body>
     <h1>Production Plan List</h1>

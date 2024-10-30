@@ -11,7 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-       
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/productionplandetails.css">
     </head>
     <body>
         <h1>${requestScope.plan.name} Detail</h1>
@@ -34,7 +34,7 @@
                         <tr>
                             
                             <td rowspan="3">${d}</td>
-                            <td>K1<input type="hidden" name="sid${d}" value="1"></td>
+                            <td>Shift 1<input type="hidden" name="sid${d}" value="1"></td>
                             <c:forEach items="${requestScope.plan.headers}" var="h">
                             <input type="hidden" name="hid${d}" value="${h.id}">
                             <td><input type="text" name="quantity${h.id}1${d}"
@@ -45,7 +45,7 @@
                             
                         </tr>
                         <tr>
-                            <td>K2<input type="hidden" name="sid${d}" value="2"></td>
+                            <td>Shift 2<input type="hidden" name="sid${d}" value="2"></td>
                             <c:forEach items="${requestScope.plan.headers}" var="h">
                            
                                 
@@ -56,7 +56,7 @@
                             </c:forEach>      
                         </tr>
                         <tr>
-                            <td>K3<input type="hidden" name="sid${d}" value="3"></td>
+                            <td>Shift 3<input type="hidden" name="sid${d}" value="3"></td>
                             <c:forEach items="${requestScope.plan.headers}" var="h">
                            
                                 <td><input type="text" name="quantity${h.id}3${d}"
@@ -69,10 +69,6 @@
                 </tbody>
         </table>
             <input type="submit" value="Save">
-        </form>
-        
-       
-        
-        
+        </form>     
     </body>
 </html>
