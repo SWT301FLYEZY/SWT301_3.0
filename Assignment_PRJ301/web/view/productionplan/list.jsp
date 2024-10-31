@@ -18,13 +18,14 @@
             <td style="font-weight: bold">Quantity</td>
             <td style="font-weight: bold">Product</td>
             <td style="font-weight: bold">Estimation</td>
+            <td style="font-weight: bold">Action</td>
             
             
         </tr>
         <c:forEach items="${requestScope.plans}" var="p">
             <tr class="even" >
                 <td rowspan="${p.headers.size()}">${p.id}</td>
-                <td rowspan="${p.headers.size()}"><a href="detail?plid=${p.id}">${p.name}</a> </td>
+                <td rowspan="${p.headers.size()}">${p.name}</td>
                 <td rowspan="${p.headers.size()}">${p.start}</td>
                 <td  rowspan="${p.headers.size()}">${p.end}</td>
                 <td>
@@ -38,7 +39,9 @@
                 <td>
                     ${p.headers[0].estimatedeffort}<br/>
                 </td> 
-               
+               <td  rowspan="${p.headers.size()}">
+                   <button onclick="location.href='detail?plid=${p.id}'">View</button>
+               </td>
            
 
             </tr>

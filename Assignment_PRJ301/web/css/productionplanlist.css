@@ -77,6 +77,32 @@ a:hover {
     text-decoration: underline;
 }
 
+/* Hiệu ứng cho nút View */
+button {
+    padding: 10px 15px;
+    background-color: #a3c9f1; /* Nền xanh nhạt */
+    color: #fff;
+    border: 1px solid #a3c9f1;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    transition: background-color 0.3s, border-color 0.3s, transform 0.2s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background-color: #d1e7fa; /* Nền sáng hơn khi hover */
+    border-color: transparent; /* Làm mờ viền */
+    transform: scale(1.05);    /* Phóng to nhẹ */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+button:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
 /* Đáp ứng cho các thiết bị di động */
 @media (max-width: 768px) {
     table {
@@ -90,5 +116,17 @@ a:hover {
     th, td {
         padding: 10px;
         font-size: 0.9em;
+    }
+}
+
+/* Responsive nâng cao cho màn hình nhỏ hơn */
+@media (max-width: 600px) {
+    table, tr, td, th {
+        display: block;
+        width: 100%;
+    }
+
+    tr {
+        margin-bottom: 15px;
     }
 }

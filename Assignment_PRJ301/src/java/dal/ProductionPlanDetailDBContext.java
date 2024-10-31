@@ -16,7 +16,9 @@ import model.ProductionPlanHeader;
  * @author ASUS
  */
 public class ProductionPlanDetailDBContext extends DBContext<ProductionPlanDetail> {
-
+    private String url = "jdbc:sqlserver://localhost\\MSSQLSERVER02:1433;databaseName=ProductionSchedulingSystem_DB;trustServerCertificate=true;";
+    private String user = "tuananh";
+    private String password = "123";
     @Override
     public void insert(ProductionPlanDetail model) {
         String sql = "INSERT INTO [PlanDetails]\n"
@@ -46,7 +48,7 @@ public class ProductionPlanDetailDBContext extends DBContext<ProductionPlanDetai
 
     @Override
     public void update(ProductionPlanDetail model) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       
     }
 
     @Override
@@ -98,5 +100,41 @@ public class ProductionPlanDetailDBContext extends DBContext<ProductionPlanDetai
     public ProductionPlanDetail get(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+ public void update(int id, int quantity) {
+        String sql = "update PlanDetails\n"
+                + "set quantity = ?\n"
+                + "where pdid = ?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.setInt(2, quantity);
+            ps.executeUpdate();
+        } catch (Exception e) {
 
+        }
+    }
+ public boolean quantityExists(ProductionPlanDetail detail) {
+    boolean exists = false;
+    String query = "SELECT COUNT(*) FROM production_plan_details WHERE sid = ? AND header_id = ? AND date = ? AND quantity = ?";
+
+    try ( Connection connection = DriverManager.getConnection(url, user, password) // Hàm getConnection() để lấy kết nối
+    ;PreparedStatement statement = connection.prepareStatement(query)) {
+        
+        statement.setInt(1, detail.getSid());
+        statement.setInt(2, detail.getHeader().getId());
+        statement.setDate(3, detail.getDate());
+        statement.setInt(4, detail.getQuantity()); 
+
+        ResultSet resultSet = statement.executeQuery();
+        if (resultSet.next()) {
+            exists = resultSet.getInt(1) > 0; 
+        }
+    } catch (SQLException e) {
+        e.printStackTrace(); 
+    }
+
+    return exists;
+}
+
+    
 }

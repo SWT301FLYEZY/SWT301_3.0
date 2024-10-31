@@ -96,7 +96,7 @@ public class ProductionPlanDBContext extends DBContext<ProductionPlan> {
 
     @Override
     public void update(ProductionPlan model) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
     }
 
     @Override
