@@ -48,8 +48,18 @@ public class ProductionPlanDetailDBContext extends DBContext<ProductionPlanDetai
 
     @Override
     public void update(ProductionPlanDetail model) {
-       
+    String sql = "UPDATE PlanDetails SET quantity = ? WHERE sid = ? AND phid = ? AND date = ?";
+    try (PreparedStatement ps = connection.prepareStatement(sql)) {
+        ps.setInt(1, model.getQuantity());
+        ps.setInt(2, model.getSid());
+        ps.setInt(3, model.getHeader().getId());
+        ps.setDate(4, model.getDate());
+        ps.executeUpdate();
+    } catch (SQLException ex) {
+        ex.printStackTrace();
     }
+}
+
 
     @Override
     public void delete(ProductionPlanDetail model) {
@@ -100,24 +110,11 @@ public class ProductionPlanDetailDBContext extends DBContext<ProductionPlanDetai
     public ProductionPlanDetail get(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-  public void update(int id, int quantity) {
-        String sql = "update PlanDetails\n"
-                + "set quantity = ?\n"
-                + "where pdid = ?";
-        try {
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setInt(1, id);
-            ps.setInt(2, quantity);
-            ps.executeUpdate();
-        } catch (Exception e) {
-
-        }
-    }
 
 
 public boolean quantityExists(ProductionPlanDetail detail) {
     boolean exists = false;
-    String query = "SELECT COUNT(*) FROM [PlanDetails] WHERE sid = ? AND header_id = ? AND date = ?";
+    String query = "SELECT COUNT(*) FROM [PlanDetails] WHERE sid = ? AND phid = ? AND date = ?";
 
     try (PreparedStatement statement = connection.prepareStatement(query)) {
         statement.setInt(1, detail.getSid());

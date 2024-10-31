@@ -87,7 +87,7 @@ public class ProductionPlanDetailController extends HttpServlet {
                         detail.setDate(date);
                         detail.setQuantity(quantity);                                      
                         if (dbDetail.quantityExists(detail)) {
-                            dbDetail.update(sid, quantity);
+                            dbDetail.update(detail);
                         }else{
                             dbDetail.insert(detail);    
                         }
