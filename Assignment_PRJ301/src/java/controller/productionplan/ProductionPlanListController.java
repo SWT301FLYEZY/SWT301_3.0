@@ -39,6 +39,19 @@ public class ProductionPlanListController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String action = request.getParameter("action");
+        
+        if ("delete".equals(action)) {
+            int planId = Integer.parseInt(request.getParameter("planId"));
+            ProductionPlanDBContext dbPlan = new ProductionPlanDBContext();
+            ProductionPlan planToDelete = new ProductionPlan();
+            planToDelete.setId(planId);
+            
+            dbPlan.delete(planToDelete);
+        }
+        
+        response.sendRedirect("list"); // Quay lại trang danh sách sau khi xóa
+    
 
     }
 

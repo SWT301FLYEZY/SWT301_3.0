@@ -5,7 +5,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Production Plan List</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/productionplanlist.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/productionplanlists.css">
 </head>
 <body>
     <h1>Production Plan List</h1>
@@ -41,6 +41,13 @@
                 </td> 
                <td  rowspan="${p.headers.size()}">
                    <button onclick="location.href='detail?plid=${p.id}'">View</button>
+                   <!-- Form for delete action -->
+                    <form action="list" method="post" style="display:inline;">
+                        <input type="hidden" name="planId" value="${p.id}">
+                        <input type="hidden" name="action" value="delete">
+                        <button type="submit" class="delete" onclick="return confirm('Are you sure you want to delete this plan?');">Delete</button>
+                    </form>
+                   
                </td>
            
 

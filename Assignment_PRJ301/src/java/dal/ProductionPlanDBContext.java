@@ -101,7 +101,42 @@ public class ProductionPlanDBContext extends DBContext<ProductionPlan> {
 
     @Override
     public void delete(ProductionPlan model) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       try {
+        connection.setAutoCommit(false);
+
+        // Xóa dữ liệu trong PlanHeaders liên quan đến ProductionPlan
+        String sql_delete_headers = "DELETE FROM [PlanHeaders] WHERE plid = ?";
+        PreparedStatement stm_delete_headers = connection.prepareStatement(sql_delete_headers);
+        stm_delete_headers.setInt(1, model.getId());
+        stm_delete_headers.executeUpdate();
+
+        // Xóa bản ghi chính trong Plans
+        String sql_delete_plan = "DELETE FROM [Plans] WHERE plid = ?";
+        PreparedStatement stm_delete_plan = connection.prepareStatement(sql_delete_plan);
+        stm_delete_plan.setInt(1, model.getId());
+        stm_delete_plan.executeUpdate();
+
+        connection.commit();
+    } catch (SQLException ex) {
+        Logger.getLogger(ProductionPlanDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        try {
+            connection.rollback();
+        } catch (SQLException ex1) {
+            Logger.getLogger(ProductionPlanDBContext.class.getName()).log(Level.SEVERE, null, ex1);
+        }
+    } finally {
+        try {
+            connection.setAutoCommit(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductionPlanDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            connection.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductionPlanDBContext.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     }
 
     @Override
@@ -213,5 +248,7 @@ public class ProductionPlanDBContext extends DBContext<ProductionPlan> {
         }
         return cPlan;
     }
+    
+    
 
 }
