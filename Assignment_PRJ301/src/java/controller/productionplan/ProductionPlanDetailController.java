@@ -80,19 +80,21 @@ public class ProductionPlanDetailController extends HttpServlet {
                         Date date = Date.valueOf(d);
                         int sid = Integer.parseInt(s);
                         int quantity = Integer.parseInt(raw_quantity);
-                        detail.setSid(sid);
+                        detail.setSid(sid);                        
                         ProductionPlanHeader header = new ProductionPlanHeader();
                         header.setId(hid);
                         detail.setHeader(header);
                         detail.setDate(date);
-                        detail.setQuantity(quantity);
-                        dbDetail.insert(detail);
-                        if (dbDetail.quantityExists(detail)) {
+                        detail.setQuantity(quantity);                                      
+                        
+                           if (detail.getHeader().getId() == hid &&detail.getDate().compareTo(date)== 0 &&detail.getSid() == sid) {
                             dbDetail.update(detail);
+                            
                         } else {
-                            dbDetail.insert(detail);
+                         dbDetail.insert(detail);
+                    } 
                         }
-                    }
+                        
 
                 }
 
@@ -102,5 +104,5 @@ public class ProductionPlanDetailController extends HttpServlet {
         response.sendRedirect("list");
 
     }
-
+    
 }
