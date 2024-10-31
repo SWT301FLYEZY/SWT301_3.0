@@ -86,15 +86,12 @@ public class ProductionPlanDetailController extends HttpServlet {
                         detail.setHeader(header);
                         detail.setDate(date);
                         detail.setQuantity(quantity);                                      
-                        
-                           if (detail.getHeader().getId() == hid &&detail.getDate().compareTo(date)== 0 &&detail.getSid() == sid) {
-                            dbDetail.update(detail);
-                            
-                        } else {
-                         dbDetail.insert(detail);
-                    } 
+                        if (dbDetail.quantityExists(detail)) {
+                            dbDetail.update(sid, quantity);
+                        }else{
+                            dbDetail.insert(detail);    
                         }
-                        
+                    }  
 
                 }
 

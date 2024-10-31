@@ -100,26 +100,24 @@ public class ProductionPlanDetailDBContext extends DBContext<ProductionPlanDetai
     public ProductionPlanDetail get(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
- public void update(int id, int quantity) {
-    String sql = "UPDATE [PlanDetails] SET quantity = ? WHERE pdid = ?";
-    try (PreparedStatement ps = connection.prepareStatement(sql)) { 
-        ps.setInt(1, quantity);
-        ps.setInt(2, id);
-        
-        int rowsUpdated = ps.executeUpdate();
-        if (rowsUpdated > 0) {
-            System.out.println("Update successful, rows updated: " + rowsUpdated);
-        } else {
-            System.out.println("No rows updated, please check the id.");
+  public void update(int id, int quantity) {
+        String sql = "update PlanDetails\n"
+                + "set quantity = ?\n"
+                + "where pdid = ?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.setInt(2, quantity);
+            ps.executeUpdate();
+        } catch (Exception e) {
+
         }
-    } catch (SQLException e) {
-        System.err.println("Error updating record: " + e.getMessage());
     }
-}
+
 
 public boolean quantityExists(ProductionPlanDetail detail) {
     boolean exists = false;
-    String query = "SELECT COUNT(*) FROM production_plan_details WHERE sid = ? AND header_id = ? AND date = ?";
+    String query = "SELECT COUNT(*) FROM [PlanDetails] WHERE sid = ? AND header_id = ? AND date = ?";
 
     try (PreparedStatement statement = connection.prepareStatement(query)) {
         statement.setInt(1, detail.getSid());
@@ -128,7 +126,7 @@ public boolean quantityExists(ProductionPlanDetail detail) {
 
         try (ResultSet resultSet = statement.executeQuery()) {
             if (resultSet.next()) {
-                exists = resultSet.getInt(1) > 0; // Kiểm tra nếu có ít nhất một bản ghi
+                exists = resultSet.getInt(1) > 0; 
             }
         }
     } catch (SQLException e) {
