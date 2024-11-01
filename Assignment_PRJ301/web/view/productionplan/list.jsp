@@ -6,7 +6,34 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Production Plan List</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/productionplanlists.css">
+    
+    <style>
+         .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 8px 12px;
+            font-size: 16px;
+            background-color: transparent;
+            color: #007BFF;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+        }
+        .back-button::before {
+            content: "←";
+            font-size: 30px;
+            margin-right: 8px;
+        }
+        .back-button:hover {
+            color: #0056b3;
+        }
+    </style>
+    <button class="back-button" onclick="window.location.href='/Assignment_PRJ301/home'"></button>
 </head>
+
 <body>
     <h1>Production Plan List</h1>
     <table border="1px">
@@ -18,7 +45,7 @@
             <td style="font-weight: bold">Quantity</td>
             <td style="font-weight: bold">Product</td>
             <td style="font-weight: bold">Estimation</td>
-            <td style="font-weight: bold">Action</td>
+            <td style="font-weight: bold">Actions</td>
             
             
         </tr>

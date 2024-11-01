@@ -9,6 +9,10 @@
         <servlet-class>controller.auth.LogoutController</servlet-class>
     </servlet>
     <servlet>
+    <servlet-name>HomePage</servlet-name>
+    <servlet-class>HomePage.Home</servlet-class>
+</servlet>
+    <servlet>
         <servlet-name>EmployeeListController</servlet-name>
         <servlet-class>controller.employee.EmployeeListController</servlet-class>
     </servlet>
@@ -80,4 +84,8 @@
         <servlet-name>ProductionPlanDeleteController</servlet-name>
         <url-pattern>/productionplan/delete</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+    <servlet-name>HomePage</servlet-name>
+    <url-pattern>/home</url-pattern>
+</servlet-mapping>
 </web-app>

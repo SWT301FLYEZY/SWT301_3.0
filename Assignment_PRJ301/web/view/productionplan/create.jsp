@@ -12,10 +12,38 @@
        <head>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>JSP Page</title>
-    
+    <title>JSP Page</title>  
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/create.css">
 </head>
+<style>
+    .back-button {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        padding: 8px 12px;
+        font-size: 16px;
+        background-color: rgba(0, 123, 255, 0.1); /* Nền xanh nhạt trong suốt */
+        color: #007BFF;
+        border: 1px solid #007BFF;
+        border-radius: 5px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        font-weight: bold;
+        transition: background-color 0.3s, color 0.3s;
+    }
+    .back-button::before {
+        content: "←";
+        font-size: 20px;
+        margin-right: 8px;
+    }
+    .back-button:hover {
+        background-color: #007BFF; /* Nền đậm hơn khi hover */
+        color: white; /* Đổi màu chữ thành trắng khi hover */
+    }
+    </style>
+    <button class="back-button" onclick="window.location.href='/Assignment_PRJ301/home'"></button>
+
 </head>
     </head>
     <body>
