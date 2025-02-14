@@ -1,0 +1,139 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Oct 28, 2024, 10:40:10 AM
+    Author     : DAO TUAN ANH
+*/
+
+ /* Tổng thể */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f7f8fa;
+    color: #333;
+}
+
+/* Container tổng */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Phần tìm kiếm */
+.search-section {
+    width: 100%;
+    max-width: 800px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.search-section h2 {
+    font-size: 1.5em;
+    color: #1565c0;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* Form tìm kiếm */
+form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+form input[type="text"],
+form input[type="date"],
+form select {
+    flex: 1 1 45%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background-color: #f9fafb;
+    font-size: 14px;
+}
+
+form input[type="radio"] {
+    margin-right: 5px;
+}
+
+form label {
+    font-size: 14px;
+    margin-right: 10px;
+}
+
+form input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #1565c0;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+form input[type="submit"]:hover {
+    background-color: #0d47a1;
+}
+
+/* Bảng kết quả */
+table {
+    width: 100%;
+    max-width: 1200px;
+    border-collapse: collapse;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+table, th, td {
+    border: 1px solid #e0e0e0;
+}
+
+th, td {
+    padding: 12px;
+    font-size: 14px;
+    text-align: left;
+}
+
+th {
+    background-color: #1565c0;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+td {
+    background-color: #ffffff;
+    color: #333;
+}
+
+/* Hàng xen kẽ màu và hiệu ứng hover */
+tr:nth-child(even) td {
+    background-color: #f0f3f7;
+}
+
+tr:hover td {
+    background-color: #e3f2fd;
+}
+
+/* Responsive */
+@media (max-width: 800px) {
+    .search-section, table {
+        width: 100%;
+    }
+    
+    form input[type="text"],
+    form input[type="date"],
+    form select {
+        flex: 1 1 100%; /* Đặt mỗi trường input chiếm toàn bộ hàng */
+    }
+}
